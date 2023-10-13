@@ -4,7 +4,7 @@ import { DataTypes } from '../types/appTypes'
 
 type DataEntryProps = {
   title: string
-  value?: DataTypes
+  value?: string
 }
 
 const DataEntry = ({ title, value }: DataEntryProps) => {

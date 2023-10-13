@@ -7,7 +7,7 @@ import { DataTypes } from '../types/appTypes'
 // import { AppContext } from '../context/useContext'
 
 type DataAreaProps = {
-  value: {}
+  value: any
 }
 
 const DataArea = ({ value }: DataAreaProps) => {

@@ -18,30 +18,24 @@ import { DataTypes } from './types/appTypes'
 
 export default function Home() {
   const [inputData, setInputData] = useState<string>('')
-  const [loading, setLoading] = useState<boolean>()
+  const [loading, setLoading] = useState<boolean>(false)
   const [error, setError] = useState<boolean>(false)
   // const [userIpData, setUserIpData] = useState<DataTypes | null>()
   const [ipData, setIpData] = useState<DataTypes | null>()
 
-  const fetchIpData = () => {
-    const URL = `https://geo.ipify.org/api/v1?apiKey=${process.env.NEXT_PUBLIC_GEO_KEY}&ipAddress=${inputData}&domain=${inputData}`
-
-    axios
-      .get(URL)
-      .then(({ res }) => {
-        if (res.status !== 200) {
-          setError(true)
-        }
-
-        setIpData(res.data)
-
-        setError(false)
-      })
-      .catch(({ err }: any) => {
-        setError(true)
-
-        console.log('[IP_TRACKER_ERROR]', err)
-      })
+  const fetchIpData = async () => {
+    try {
+      setLoading(true)
+      const URL = `https://geo.ipify.org/api/v1?apiKey=${process.env.NEXT_PUBLIC_GEO_KEY}&ipAddress=${inputData}&domain=${inputData}`
+      const response = await axios.get(URL)
+      setIpData(response?.data)
+    } catch (err) {
+      setError(true)
+      console.log('[IP_TRACKER_ERROR]', err)
+      setLoading(false)
+    } finally {
+      setLoading(false)
+    }
   }
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -59,27 +53,28 @@ export default function Home() {
 
   // const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
   //   e.preventDefault()
-  //   if (!inputData) return
+  //   if (!inputData) returnxw
   //   fetchIpData()
   //   console.log('clicked')
   // }
+
+  function RenderLoad() {
+    return (
+      <div className='flex flex-col items-center justify-center h-[294px] mt-48 space-y-4 bg-white rounded-md w-full absolute z-50 shadow-xl'>
+        <p>Loading...</p>
+      </div>
+    )
+  }
 
   return (
     <main className='relative'>
       <div className='flex h-screen w-screen flex-col items-center '>
         <ContainerTop />
-
         <div className='flex w-[90%] md:w-[60%] absolute mt-[30px]'>
           <SearchArea handleChange={handleChange} handleClick={handleClick} />
-          {ipData ? (
-            <DataArea value={ipData} />
-          ) : (
-            <div className='flex flex-col items-center justify-center h-[294px] mt-48 space-y-4 bg-white rounded-md w-full absolute z-50 shadow-xl'>
-              <p>Loading...</p>
-            </div>
-          )}
+          {loading && <RenderLoad />}
+          {ipData && <DataArea value={ipData} /> }
         </div>
-
         <ContainerBottom />
       </div>
     </main>
