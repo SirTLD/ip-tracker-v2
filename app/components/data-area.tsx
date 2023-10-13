@@ -2,12 +2,17 @@ import React, { useContext } from 'react'
 
 import DataEntry from './data-entry'
 
-import { DataTypes } from '../types/appTypes'
-
 // import { AppContext } from '../context/useContext'
 
 type DataAreaProps = {
-  value: any
+  value: {
+    ip: string,
+    location: {
+      city: string,
+      timezone: string
+    },
+    isp: string
+  }
 }
 
 const DataArea = ({ value }: DataAreaProps) => {

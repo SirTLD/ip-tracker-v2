@@ -73,7 +73,7 @@ export default function Home() {
         <div className='flex w-[90%] md:w-[60%] absolute mt-[30px]'>
           <SearchArea handleChange={handleChange} handleClick={handleClick} />
           {loading && <RenderLoad />}
-          {ipData && <DataArea value={ipData} /> }
+          {ipData && <DataArea value={ipData} />}
         </div>
         <ContainerBottom />
       </div>
