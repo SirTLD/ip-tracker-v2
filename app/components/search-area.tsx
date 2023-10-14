@@ -10,7 +10,11 @@ import { InputTypes } from '../types/appTypes'
 
 // import { ApiContext } from '../context/useContext'
 
-const SearchArea = ({ handleChange, handleClick }: InputTypes) => {
+const SearchArea = ({
+  handleChange,
+  handleClick,
+  handleSubmit
+}: InputTypes) => {
   return (
     <div className='flex justify-center items-center h-[58px] mt-28 w-full rounded-md '>
       <input
@@ -18,6 +22,7 @@ const SearchArea = ({ handleChange, handleClick }: InputTypes) => {
         type='text'
         placeholder='Search for any IP Address or Domain.'
         onChange={handleChange}
+        onKeyDown={handleSubmit}
       />
       <Image
         className='w-[58px] h-full rounded-tr-md rounded-br-md cursor-pointer bg-center'

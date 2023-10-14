@@ -2,7 +2,7 @@ export type InputTypes = {
   //   handleSubmit?: (e: React.FormEvent<HTMLFormElement>) => void
   handleClick: (e: React.MouseEvent<HTMLButtonElement>) => void
   handleChange: (e: React.ChangeEvent<HTMLInputElement>) => void
-  handleSubmit?: (e: React.FormEvent<HTMLFormElement>) => void
+  handleSubmit?: (e: React.KeyboardEvent<HTMLInputElement>) => void
 }
 
 export type DataEntryTypes = {
@@ -13,8 +13,8 @@ export type DataEntryTypes = {
 export type DataTypes = {
   ip: string
   location: {
-    country: string
     city: string
+    country: string
     postalCode: string
     region: string
     timezone: string

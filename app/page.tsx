@@ -1,6 +1,6 @@
 'use client'
 
-import { useContext, useState } from 'react'
+import React, { useContext, useState } from 'react'
 
 import ContainerBottom from './components/container-bottom'
 
@@ -14,13 +14,14 @@ import axios from 'axios'
 
 import { DataTypes } from './types/appTypes'
 
-// import { AppContextProvider } from './context/useContext'
+import RenderLoad from './components/render-loading'
+import ErrorMessage from './components/error-message'
+import WelcomeMessage from './components/welcome-message'
 
 export default function Home() {
   const [inputData, setInputData] = useState<string>('')
   const [loading, setLoading] = useState<boolean>(false)
   const [error, setError] = useState<boolean>(false)
-  // const [userIpData, setUserIpData] = useState<DataTypes | null>()
   const [ipData, setIpData] = useState<DataTypes | null>()
 
   const fetchIpData = async () => {
@@ -28,10 +29,10 @@ export default function Home() {
       setLoading(true)
       const URL = `https://geo.ipify.org/api/v1?apiKey=${process.env.NEXT_PUBLIC_GEO_KEY}&ipAddress=${inputData}&domain=${inputData}`
       const response = await axios.get(URL)
+
       setIpData(response?.data)
     } catch (err) {
       setError(true)
-      console.log('[IP_TRACKER_ERROR]', err)
       setLoading(false)
     } finally {
       setLoading(false)
@@ -51,19 +52,10 @@ export default function Home() {
     fetchIpData()
   }
 
-  // const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
-  //   e.preventDefault()
-  //   if (!inputData) returnxw
-  //   fetchIpData()
-  //   console.log('clicked')
-  // }
-
-  function RenderLoad() {
-    return (
-      <div className='flex flex-col items-center justify-center h-[294px] mt-48 space-y-4 bg-white rounded-md w-full absolute z-50 shadow-xl'>
-        <p>Loading...</p>
-      </div>
-    )
+  const handleSubmit = (e: React.KeyboardEvent<HTMLInputElement>) => {
+    if (e.key === 'Enter') {
+      fetchIpData()
+    }
   }
 
   return (
@@ -71,9 +63,15 @@ export default function Home() {
       <div className='flex h-screen w-screen flex-col items-center '>
         <ContainerTop />
         <div className='flex w-[90%] md:w-[60%] absolute mt-[30px]'>
-          <SearchArea handleChange={handleChange} handleClick={handleClick} />
+          <SearchArea
+            handleChange={handleChange}
+            handleClick={handleClick}
+            handleSubmit={handleSubmit}
+          />
           {loading && <RenderLoad />}
+          {error && <ErrorMessage />}
           {ipData && <DataArea value={ipData} />}
+          {!ipData && <WelcomeMessage />}
         </div>
         <ContainerBottom />
       </div>
