@@ -17,6 +17,11 @@ import { DataTypes } from './types/appTypes'
 import RenderLoad from './components/render-loading'
 import ErrorMessage from './components/error-message'
 import WelcomeMessage from './components/welcome-message'
+import MapLocation from '../../public/images/MapLocation.jpg'
+
+import Image from '@/node_modules/next/image'
+import DefaultImage from './components/container-bottom'
+import Map from './components/map-data'
 
 export default function Home() {
   const [inputData, setInputData] = useState<string>('')
@@ -73,7 +78,13 @@ export default function Home() {
           {ipData && <DataArea value={ipData} />}
           {!ipData && <WelcomeMessage />}
         </div>
-        <ContainerBottom />
+        <div className='flex justify-center items-center h-full w-full relative '>
+          {ipData ? (
+            <Map lat={ipData.location.lat} lng={ipData.location.lng} />
+          ) : (
+            <DefaultImage />
+          )}
+        </div>
       </div>
     </main>
   )

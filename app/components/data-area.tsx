@@ -22,7 +22,7 @@ const DataArea = ({ value }: DataAreaProps) => {
       <DataEntry title={'IP Address'} value={value.ip} />
       <DataEntry
         title={'Location'}
-        value={`${value.location.city}, ${value.location.region}, ${value.location.country} `}
+        value={`${value.location.city}, ${value.location.region}, ${value.location.postalCode} `}
       />
       <DataEntry title={'Timezone'} value={value.location.timezone} />
       <DataEntry title={'Isp'} value={value.isp} />

@@ -1,7 +1,5 @@
 import './globals.css'
 
-import { Rubik } from '@next/font/google'
-
 import type { Metadata } from 'next'
 
 // import { AppContextProvider } from './context/useContext'

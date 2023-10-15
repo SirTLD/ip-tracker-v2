@@ -1,12 +1,12 @@
 import Image from '@/node_modules/next/image'
 import React from 'react'
-import MapLocation from '../../public/images/MapLocation.jpg'
+import DefaultMap from '../../public/images/DefaultMap.png'
 
-const ContainerBottom = () => {
+const DefaultImage = () => {
   return (
-    <div className='flex justify-center items-center h-full w-full relative  bg-blue-900'>
+    <div>
       <Image
-        src={MapLocation}
+        src={DefaultMap}
         fill={true}
         alt='map area'
         style={{ objectFit: 'cover' }}
@@ -15,4 +15,4 @@ const ContainerBottom = () => {
   )
 }
 
-export default ContainerBottom
+export default DefaultImage
