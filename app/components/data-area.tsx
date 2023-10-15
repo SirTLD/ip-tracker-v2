@@ -9,7 +9,12 @@ type DataAreaProps = {
     ip: string
     location: {
       city: string
+      country: string
+      postalCode: string
+      region: string
       timezone: string
+      lat?: number
+      lng?: number
     }
     isp: string
   }
