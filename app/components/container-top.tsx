@@ -13,7 +13,7 @@ const ContainerTop = () => {
         style={{ objectFit: 'cover' }}
       />
       <h1 className='font-bold text-2xl  text-center text-white absolute mt-[33px] z-10'>
-        IP Tracker
+        IP Address Tracker
       </h1>
     </div>
   )
