@@ -17,8 +17,10 @@ type MapDataProps = {
   lng?: any
 }
 
+type PositionType = [number, number]
+
 const Map = ({ lat, lng }: MapDataProps) => {
-  const position = [lat, lng]
+  const position: PositionType = [lat, lng]
   return (
     <div className='h-full w-full absolute z-0'>
       <MapContainer
