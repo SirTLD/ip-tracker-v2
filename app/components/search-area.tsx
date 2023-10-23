@@ -8,8 +8,6 @@ import Image from '@/node_modules/next/image'
 
 import { InputTypes } from '../types/appTypes'
 
-// import { ApiContext } from '../context/useContext'
-
 const SearchArea = ({
   handleChange,
   handleClick,
@@ -28,7 +26,9 @@ const SearchArea = ({
         className='w-[58px] h-full rounded-tr-md rounded-br-md cursor-pointer bg-center'
         src={HoverIcon}
         alt='search-icon'
-        onClick={handleClick}
+        onClick={() => {
+          handleClick
+        }}
       />
     </div>
   )
