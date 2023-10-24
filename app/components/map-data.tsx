@@ -10,6 +10,8 @@ import MarkerIcon from '../../node_modules/leaflet/dist/images/marker-icon.png'
 
 import MarkerShadow from '../../node_modules/leaflet/dist/images/marker-shadow.png'
 
+import dynamic from 'next/dynamic'
+
 import L from 'leaflet'
 
 type MapDataProps = {

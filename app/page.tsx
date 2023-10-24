@@ -1,8 +1,8 @@
 'use client'
 
-import React, { useContext, useState } from 'react'
+import React, { useState } from 'react'
 
-import ContainerBottom from './components/container-bottom'
+// import ContainerBottom from './components/container-bottom'
 
 import ContainerTop from './components/container-top'
 
@@ -15,12 +15,17 @@ import axios from 'axios'
 import { DataTypes } from './types/appTypes'
 
 import RenderLoad from './components/render-loading'
-import ErrorMessage from './components/error-message'
-import WelcomeMessage from './components/welcome-message'
-import MapLocation from '../../public/images/MapLocation.jpg'
 
-import Image from '@/node_modules/next/image'
+import ErrorMessage from './components/error-message'
+
+import WelcomeMessage from './components/welcome-message'
+// import MapLocation from '../../public/images/MapLocation.jpg'
+
+// import Image from '@/node_modules/next/image'
 import DefaultImage from './components/container-bottom'
+
+import dynamic from 'next/dynamic'
+
 import Map from './components/map-data'
 
 export default function Home() {
@@ -63,6 +68,10 @@ export default function Home() {
     }
   }
 
+  const Maps = dynamic(() => import('./components/map-data'), {
+    ssr: false
+  })
+
   return (
     <main className='relative'>
       <div className='flex h-screen w-screen flex-col items-center '>
@@ -80,7 +89,7 @@ export default function Home() {
         </div>
         <div className='flex justify-center items-center h-full w-full relative '>
           {ipData ? (
-            <Map lat={ipData.location.lat} lng={ipData.location.lng} />
+            <Maps lat={ipData.location.lat} lng={ipData.location.lng} />
           ) : (
             <DefaultImage />
           )}
