@@ -28,6 +28,8 @@ import dynamic from 'next/dynamic'
 
 import Map from './components/map-data'
 
+// import { FetchIpData } from './api/api-data'
+
 export default function Home() {
   const [inputData, setInputData] = useState<string>('')
   const [loading, setLoading] = useState<boolean>(false)

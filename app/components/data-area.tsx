@@ -1,6 +1,7 @@
 import React from 'react'
 
 import DataEntry from './data-entry'
+// import { fetchIpData } from '../api/api-data'
 
 type DataAreaProps = {
   value: {
