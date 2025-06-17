@@ -1,8 +1,7 @@
 import React from 'react'
-
+import { DataStatCard } from './data-stat-card'
+import { Card, CardContent } from '../ui/card'
 import { Globe, MapPin, Clock, Wifi } from 'lucide-react'
-import { Card, CardContent } from './ui/card'
-import { DataStatCard } from './data/data-stat-card'
 
 type DataAreaProps = {
   value: {

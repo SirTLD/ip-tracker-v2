@@ -1,18 +1,8 @@
-import Image from '@/node_modules/next/image'
 import React from 'react'
-import DefaultMap from '../../public/images/DefaultMap.png'
+import MapPlaceholder from './map/map-placeholder'
 
 const DefaultImage = () => {
-  return (
-    <div>
-      <Image
-        src={DefaultMap}
-        fill={true}
-        alt='map area'
-        style={{ objectFit: 'cover' }}
-      />
-    </div>
-  )
+  return <MapPlaceholder />
 }
 
 export default DefaultImage
