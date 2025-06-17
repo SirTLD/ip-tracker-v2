@@ -128,7 +128,11 @@ export default function Home() {
           setErrorMessage(
             'Too many requests. Please wait a moment and try again.'
           )
-        } else if (err.response?.status >= 500) {
+        } else if (
+          axios.isAxiosError(err) &&
+          err.response &&
+          err.response.status >= 500
+        ) {
           setErrorMessage('Server error. Please try again later.')
         } else if (err.code === 'ECONNABORTED') {
           setErrorMessage(
